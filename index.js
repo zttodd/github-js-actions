@@ -20,7 +20,10 @@ async function run() {
   const { data: pullRequest } = await octokit.issues.listForRepo({
       owner: owner,
       repo: repo,
-      labels: label
+      labels: label,
+      mediaType: {
+        format: 'diff'
+      }
   });
 
   console.log(pullRequest);
