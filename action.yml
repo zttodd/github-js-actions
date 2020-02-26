@@ -7,8 +7,10 @@ inputs:
   GITHUB_TOKEN:
     required: true
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  id: # id of output
+    description: 'The search that was performed'
+  changelog:
+    description: 'Markdown string returned using search results'
 runs:
   using: 'node12'
   main: 'index.js'

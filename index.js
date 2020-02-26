@@ -1,5 +1,5 @@
 const core = require('@actions/core');
-const { context, GitHub } = require('@actions/github');
+const { GitHub } = require('@actions/github');
 
 async function run() {
   try {
@@ -20,7 +20,14 @@ async function run() {
       q: query
   });
 
-  console.log(pullRequest);
+  let changelog;
+
+  for (const PR in pullRequest) {
+    changelog += `- [${ PR.title }](${ PR.url })\n`
+  }
+
+
+  core.setOutput('changelog', changelog);
 
   } catch (error) {
     core.setFailed(error.message);
