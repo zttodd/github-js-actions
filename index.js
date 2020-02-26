@@ -23,7 +23,7 @@ async function run() {
   let changelog;
 
   pullRequest.items.forEach(function(item) {
-    changelog += `- [${ item.title }](${ item.url })\n`;
+    changelog += `- [${ item.title }](${ item.html_url })\n`;
   })
 
   core.setOutput('changelog', changelog);
