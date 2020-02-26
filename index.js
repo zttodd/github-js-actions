@@ -8,7 +8,8 @@ async function run() {
   // myToken: ${{ secrets.GITHUB_TOKEN }}
   // https://help.github.com/en/actions/automating-your-workflow-with-github-actions/authenticating-with-the-github_token#about-the-github_token-secret
   const myToken = core.getInput(process.env.GITHUB_TOKEN);
-  const label = core.getInput('tag_name', { required: true });
+  const tag = core.getInput('tag_name', { required: true });
+  const label = tag.substr(9, tag.length-1);
 
   const octokit = new github.GitHub(myToken);
 
