@@ -9,15 +9,13 @@ async function run() {
   // myToken: ${{ secrets.GITHUB_TOKEN }}
   // https://help.github.com/en/actions/automating-your-workflow-with-github-actions/authenticating-with-the-github_token#about-the-github_token-secret
   const myToken = core.getInput(process.env.GITHUB_TOKEN);
-  console.log('Got mytoken');
+  console.log('Got mytoken:' + myToken);
   const tag = core.getInput('tag_name', { required: true });
   console.log('tag: ' + tag);
   const label = tag.substr(10, tag.length-1);
   console.log('label: ' + label);
 
   const octokit = new github.GitHub(myToken);
-
-  console.log(octokit);
 
   const { data: pullRequest } = await octokit.pulls.get({
       owner: 'octokit',
