@@ -7,7 +7,6 @@ async function run() {
   // The YML workflow will need to set myToken with the GitHub Secret Token
   // myToken: ${{ secrets.GITHUB_TOKEN }}
   // https://help.github.com/en/actions/automating-your-workflow-with-github-actions/authenticating-with-the-github_token#about-the-github_token-secret
-  const { owner, repo } = context.repo;
   const myToken = core.getInput('GITHUB_TOKEN');
 
   const tag = core.getInput('tag_name', { required: true });
@@ -16,11 +15,9 @@ async function run() {
   const octokit = new GitHub(myToken);
 
   console.log(octokit);
-  
-  const { data: pullRequest } = await octokit.issues.listForRepo({
-      owner: owner,
-      repo: repo,
-      labels: label
+
+  const { data: pullRequest } = await octokit.search.issuesAndPullRequests({
+      q: 'label:' + label
   });
 
   console.log(pullRequest);
