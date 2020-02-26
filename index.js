@@ -12,12 +12,12 @@ async function run() {
   const tag = core.getInput('tag_name', { required: true });
   const label = tag.substr(10, tag.length-1);
 
+  const query = `type:pr+label:${label}`;
+
   const octokit = new GitHub(myToken);
 
-  console.log(octokit);
-
   const { data: pullRequest } = await octokit.search.issuesAndPullRequests({
-      q: 'label:' + label
+      q: query
   });
 
   console.log(pullRequest);
