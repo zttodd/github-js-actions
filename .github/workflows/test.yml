@@ -21,5 +21,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          body: ${{ steps.build_changelog.outputs.changelog }}
           tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          body: ${{ steps.build_changelog.outputs.changelog }}
+          draft: true
+          prerelease: true
