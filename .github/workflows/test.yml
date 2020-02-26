@@ -31,8 +31,7 @@ jobs:
         run: npm build
       - name: Create Release
         id: create_release
-      - uses: actions/checkout@v1
-      - uses: ./
+        uses: ./
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
