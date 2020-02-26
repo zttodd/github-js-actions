@@ -1,25 +1,39 @@
-name: "units-test"
+name: Get all PRs on tag push
+
 on:
-  pull_request:
   push:
-    branches:
-      - master
-      - 'releases/*'
+    tags: 
+      - 'v**-alpha**'
 
 jobs:
-  # unit tests
-  units:
+  build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - run: npm ci
-    - run: npm test
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: npm ci
+      - run: npm test
+      - name: Create artifact
+        run: npm build
 
-  # test action works running from the graph  
-  test:
+  create-release:
+    needs: publish-npm
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - uses: ./
-      with:
-        milliseconds: 1000
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: npm ci
+      - name: Create artifact
+        run: npm build
+      - name: Create Release
+        id: create_release
+        - uses: actions/checkout@v1
+        - uses: ./
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ github.ref }}
