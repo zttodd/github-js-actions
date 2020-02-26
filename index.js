@@ -22,12 +22,11 @@ async function run() {
 
   let changelog;
 
-  pullRequest.items.forEach(function(element) {
-    console.log(element.title);
-    console.log(element.url);
+  pullRequest.items.forEach(function(item) {
+    changelog += `- [${ item.title }](${ item.url })\n`;
   })
 
-  // console.log(changelog);
+  console.log(changelog);
 
   // core.setOutput('changelog', changelog);
 
