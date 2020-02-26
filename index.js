@@ -29,6 +29,8 @@ async function run() {
 
   core.setOutput('changelog', changelog);
 
+  console.log(changelog);
+
   } catch (error) {
     core.setFailed(error.message);
   }
