@@ -2,7 +2,7 @@ name: Get all PRs on tag push
 
 on:
   push:
-    tags: 
+    tags:
       - 'v**-alpha**'
 
 jobs:
@@ -10,12 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-      - run: npm ci
-      - name: Create artifact
-        run: npm build
       - name: Create Release
         id: create_release
         uses: ./
