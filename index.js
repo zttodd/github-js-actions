@@ -8,7 +8,7 @@ async function run() {
   // The YML workflow will need to set myToken with the GitHub Secret Token
   // myToken: ${{ secrets.GITHUB_TOKEN }}
   // https://help.github.com/en/actions/automating-your-workflow-with-github-actions/authenticating-with-the-github_token#about-the-github_token-secret
-  const myToken = core.getInput(process.env.GITHUB_TOKEN);
+  const myToken = core.getInput('GITHUB_TOKEN');
   console.log('Got mytoken:' + myToken);
   const tag = core.getInput('tag_name', { required: true });
   console.log('tag: ' + tag);
