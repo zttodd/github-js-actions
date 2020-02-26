@@ -20,19 +20,20 @@ async function run() {
       q: query
   });
 
-  let changelog;
+  // let changelog;
 
   // console.log(pullRequest.items);
 
   for (let [key, value] in Object.entries(pullRequest)) {
     if (key === 'items') {
+      console.log(key);
       key.forEach(function() {
         changelog += `- [${ value.title }](${ value.url })\n`;
       });
     }
   }
 
-  console.log(changelog);
+  // console.log(changelog);
 
   // core.setOutput('changelog', changelog);
 
