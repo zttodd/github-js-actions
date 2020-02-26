@@ -22,16 +22,16 @@ async function run() {
 
   // let changelog;
 
-  // console.log(pullRequest.items);
+  console.log(pullRequest.items);
 
-  for (let [key, value] in Object.entries(pullRequest)) {
-    if (key === 'items') {
-      console.log(key);
-      key.forEach(function() {
-        changelog += `- [${ value.title }](${ value.url })\n`;
-      });
-    }
-  }
+  // for (let [key, value] in Object.entries(pullRequest)) {
+  //   if (key === 'items') {
+  //     console.log(key);
+  //     key.forEach(function() {
+  //       changelog += `- [${ value.title }](${ value.url })\n`;
+  //     });
+  //   }
+  // }
 
   // console.log(changelog);
 
