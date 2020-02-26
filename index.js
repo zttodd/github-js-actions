@@ -12,7 +12,7 @@ async function run() {
   console.log('Got mytoken');
   const tag = core.getInput('tag_name', { required: true });
   console.log('tag: ' + tag);
-  const label = tag.substr(9, tag.length-1);
+  const label = tag.substr(10, tag.length-1);
   console.log('label: ' + label);
 
   const octokit = new github.GitHub(myToken);
