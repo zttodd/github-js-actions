@@ -6,20 +6,7 @@ on:
       - 'v**-alpha**'
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-      - run: npm ci
-      - run: npm test
-      - name: Create artifact
-        run: npm build
-
   create-release:
-    needs: publish-npm
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
