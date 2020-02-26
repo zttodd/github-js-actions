@@ -22,8 +22,10 @@ async function run() {
 
   let changelog;
 
-  for (const PR in pullRequest) {
-    changelog += `- [${ PR.title }](${ PR.url })\n`
+  for (const items in pullRequest) {
+    for(const PR in items) {
+      changelog += `- [${ PR.title }](${ PR.url })\n`;
+    }
   }
 
 
