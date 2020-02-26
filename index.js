@@ -22,10 +22,9 @@ async function run() {
 
   let changelog;
 
-  for (const item in pullRequest.items) {
-    console.log(item);
-    // changelog += `- [${ item.title }](${ item.url })\n`;
-  }
+  pullRequest.items.forEach(function(element) {
+    console.log(element);
+  })
 
   // console.log(changelog);
 
