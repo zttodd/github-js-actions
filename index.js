@@ -1,5 +1,5 @@
 const core = require('@actions/core');
-const { GitHub, context } = require('@actions/github');
+const github = require('@actions/github');
 
 async function run() {
   try {
@@ -10,15 +10,12 @@ async function run() {
   const myToken = core.getInput(process.env.GITHUB_TOKEN);
   const label = core.getInput('tag_name', { required: true });
 
-  const octokit = new GitHub(myToken);
+  const octokit = new github.GitHub(myToken);
 
   const { data: pullRequest } = await octokit.pulls.get({
       owner: 'octokit',
       repo: 'rest.js',
-      labels: label,
-      mediaType: {
-        format: 'diff'
-      }
+      labels: label
   });
 
   console.log(pullRequest);
