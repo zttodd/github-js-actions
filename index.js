@@ -23,7 +23,8 @@ async function run() {
   let changelog;
 
   pullRequest.items.forEach(function(element) {
-    console.log(element);
+    console.log(element.title);
+    console.log(element.url);
   })
 
   // console.log(changelog);
