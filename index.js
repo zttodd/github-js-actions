@@ -22,17 +22,19 @@ async function run() {
 
   let changelog;
 
-  for (const items in pullRequest) {
-    for(const PR in items) {
-      console.log(PR);
-      // changelog += `- [${ PR.title }](${ PR.url })\n`;
+  // console.log(pullRequest.items);
+
+  for (let [key, value] in Object.entries(pullRequest)) {
+    if (key === 'items') {
+      key.forEach(function() {
+        changelog += `- [${ value.title }](${ value.url })\n`;
+      });
     }
   }
 
-
-  core.setOutput('changelog', changelog);
-
   console.log(changelog);
+
+  // core.setOutput('changelog', changelog);
 
   } catch (error) {
     core.setFailed(error.message);
