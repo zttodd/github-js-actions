@@ -5,6 +5,7 @@ inputs:
     description: 'The name of the tag. This should come from the webhook payload, `github.GITHUB_REF` when a user pushes a new tag'
     required: true
   GITHUB_TOKEN:
+    description: 'The value of the secret GitHub token'
     required: true
 outputs:
   id: # id of output

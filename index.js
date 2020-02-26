@@ -26,9 +26,7 @@ async function run() {
     changelog += `- [${ item.title }](${ item.url })\n`;
   })
 
-  console.log(changelog);
-
-  // core.setOutput('changelog', changelog);
+  core.setOutput('changelog', changelog);
 
   } catch (error) {
     core.setFailed(error.message);
