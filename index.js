@@ -3,7 +3,7 @@ const { GitHub } = require('@actions/github');
 
 async function run() {
   try {
-    const myToken = core.getInput('GITHUB_TOKEN');
+    const myToken = core.getInput('github_token');
 
     const tag = core.getInput('tag_name', { required: true });
     const label = tag.substr(10, tag.length-1);
