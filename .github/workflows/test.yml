@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - uses: ./
-        name: Build Changelog
+      - name: Build Changelog
+        uses: ./
         id: build_changelog
         with:
           tag_name: ${{ github.ref }}
