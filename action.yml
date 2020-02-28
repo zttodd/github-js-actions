@@ -8,8 +8,6 @@ inputs:
     description: 'The value of the secret GitHub token'
     required: true
 outputs:
-  id: # id of output
-    description: 'The search that was performed'
   changelog:
     description: 'Markdown string returned using search results'
 runs:
