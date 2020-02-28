@@ -19,9 +19,8 @@ jobs:
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
-        env:
-          github_token: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
           tag_name: ${{ github.ref }}
           release_name: ${{ github.ref }}
           body: ${{ steps.build_changelog.outputs.changelog }}
