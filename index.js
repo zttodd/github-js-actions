@@ -3,7 +3,7 @@ const { GitHub } = require('@actions/github');
 
 async function run() {
   try {
-    const myToken = core.getInput('github_token');
+    const myToken = core.getInput('GITHUB_TOKEN');
 
     const tag = core.getInput('tag_name', { required: true });
     const label = tag.substr(10, tag.length-1);
@@ -16,7 +16,7 @@ async function run() {
         q: query
     });
 
-    let changelog;
+    let changelog = '';
 
     pullRequest.items.forEach(function(item) {
       console.log(item.title);
