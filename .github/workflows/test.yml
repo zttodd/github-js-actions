@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Build Changelog
-        uses: ./
+        uses: ./gh-actions/build-changelog/
         id: build_changelog
         with:
           tag_name: ${{ github.ref }}
