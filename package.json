@@ -1,6 +1,6 @@
 {
   "name": "github-js-actions",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "JavaScript Action Template",
   "main": "index.js",
   "scripts": {
