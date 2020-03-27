@@ -1,15 +1,21 @@
-name: 'Build Changelog'
-description: 'Build changelog to be attached to the body of a GitHub release'
+name: 'Build Changelog for PR'
+description: 'Builds a changelog to update a PR'
 inputs:
-  tag_name:
-    description: 'The name of the tag. This should come from the webhook payload, `github.GITHUB_REF` when a user pushes a new tag'
-    required: true
   GITHUB_TOKEN:
     description: 'The value of the secret GitHub token'
     required: true
+  owner_name:
+    description: 'The name of the tag.'
+    required: true
+  pull_number:
+    description: 'The number of the pull request being updated.'
+    required: true
+  repo_name:
+    description: 'The name of the repository.'
+    required: true
 outputs:
   changelog:
-    description: 'Markdown string returned using search results'
+    description: 'Outputs a bulleted list of merged PRs based on a specific label'
 runs:
   using: 'node12'
   main: 'index.js'
