@@ -14,7 +14,7 @@ jobs:
         with:
           node-version: 12
       - name: Update PR with changelog data
-        uses: ./gh-actions/build-changelog-pull-request/
+        uses: ./
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
           owner_name: ${{ github.repository_owner }}
