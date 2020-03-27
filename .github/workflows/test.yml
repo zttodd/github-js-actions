@@ -1,29 +1,22 @@
-name: Get all PRs on tag push
+name: Publish alpha release
 
 on:
-  push:
-    tags:
-      - 'v**-alpha**'
+  pull_request:
+    branches:
+      - '2.0.0-master'
 
 jobs:
-  create-release:
-    runs-on: ubuntu-latest
+  update-pull-request:
+    runs-on: ubuntu-16.04
     steps:
       - uses: actions/checkout@v1
-      - name: Build Changelog
-        uses: ./
-        id: build_changelog
+      - uses: actions/setup-node@v1
         with:
-          tag_name: ${{ github.ref }}
-          github_token: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
+          node-version: 12
+      - name: Update PR with changelog data
+        uses: ./gh-actions/build-changelog-pull-request/
+        with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: ${{ github.ref }}
-          body: ${{ steps.build_changelog.outputs.changelog }}
-          draft: true
-          prerelease: true
+          owner_name: ${{ github.repository_owner }}
+          pull_number: ${{ github.number }}
+          repo_name: ${{ github.head_ref }}
