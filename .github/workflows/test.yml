@@ -3,7 +3,7 @@ name: Publish alpha release
 on:
   pull_request:
     branches:
-      - '2.0.0-master'
+      - 'master'
 
 jobs:
   update-pull-request:
