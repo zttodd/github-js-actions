@@ -14,15 +14,18 @@ const options = {
   headers: { 'User-Agent': 'rivet-source' }
 }
 
-let output;
-
 const req = https.request(options, res => {
-  output = res.statusCode;
-
-  res.on('data', d => {
-    process.stdout.write(d)
-  })
-})
+  let rawData = '';
+  res.on('data', (chunk) => { rawData += chunk; });
+  res.on('end', () => {
+    try {
+      const parsedData = JSON.parse(rawData);
+      console.log(parsedData);
+    } catch (e) {
+      console.error(e.message);
+    }
+  });
+});
 
 req.on('error', error => {
   console.error(error)
@@ -31,7 +34,7 @@ req.on('error', error => {
 req.end()
 
 // From JSON response output, get pull request titles and html_urls for each PR
-console.log(output);
+// console.log(output);
 
 // Construct titles and html_urls into markdown format of changelog
 
