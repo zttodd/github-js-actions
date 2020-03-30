@@ -1,15 +1,28 @@
 // Include any node requirements (http, etc)
 const axios = require('axios');
+const readline = require("readline");
 
 // Prompt for label/tag name
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+function labelPrompt() {
+  return new Promise((resolve) => {
+    rl.question("What is the release label? (ex: v2.0.0-alpha.x) ", (input) => resolve(input) );
+  });
+}
 
 // Make a connection to GitHub API and get JSON response
-// https://api.github.com/search/issues?q=repo:indiana-university/rivet-source+type:pr+label:v2.0.0-alpha.3
+// https://api.github.com/search/issues?q=repo:indiana-university/rivet-source+type:pr+label:v2.0.0-alpha.x
 
-axios({
-  method: 'get',
-  url: 'https://api.github.com/search/issues?q=repo:indiana-university/rivet-source+type:pr+label:v2.0.0-alpha.3'
-})
+labelPrompt()
+.then((input) => {
+  axios({
+    method: 'get',
+    url: `https://api.github.com/search/issues?q=repo:indiana-university/rivet-source+type:pr+label:${input}`
+  })
   .then((response) => {
     const parsedData = response.data;
     return parsedData;
@@ -24,4 +37,9 @@ axios({
       // - [PR title](PR URL)
       console.log(`- [${items[item].title}](${items[item].html_url})`);
     }
-  })
+  })})
+
+// Close the input prompt process
+.then(() => {
+  rl.close();
+})
